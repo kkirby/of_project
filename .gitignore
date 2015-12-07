@@ -1,0 +1,7 @@
+bin
+obj
+libs
+.DS_Store
+platform_projects/android
+platform_projects/ios/asdf.xcodeproj/xcuserdata
+platform_projects/ios/asdf.xcodeproj/project.xcworkspace/xcuserdata
