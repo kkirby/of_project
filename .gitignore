@@ -2,6 +2,8 @@ bin
 obj
 libs
 .DS_Store
-platform_projects/android
 platform_projects/ios/asdf.xcodeproj/xcuserdata
 platform_projects/ios/asdf.xcodeproj/project.xcworkspace/xcuserdata
+platform_projects/ios/of_project.framework
+platform_projects/android/of_project
+platform_projects/android/gen
