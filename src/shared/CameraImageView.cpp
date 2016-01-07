@@ -7,10 +7,10 @@
 CameraImageView::CameraImageView(
 	ofImage* img,std::shared_ptr<View> _foreground,std::shared_ptr<View> _background
 ) : image(img),foreground(_foreground),background(_background){
-	GroupFilter* groupFilter = new GroupFilter();
+	/*GroupFilter* groupFilter = new GroupFilter();
 	groupFilter->push_back(new GaussianBlurFilter());
 	groupFilter->push_back(new BrightnessFilter(-0.25));
-	filter = groupFilter;
+	filter = groupFilter;*/
 }
 
 void CameraImageView::update(){
@@ -33,9 +33,9 @@ void CameraImageView::update(){
 }
 
 void CameraImageView::render() const {
-	filter->begin();
-	background->render();
-	filter->end();
+	//filter->begin();
+	//background->render();
+	//filter->end();
 	
 	foreground->render();
 	

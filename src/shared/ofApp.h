@@ -16,6 +16,7 @@
 #endif
 
 #include "ViewGroup.h"
+#include "RootView.h"
 
 class ofApp : public ofBaseApp {
 	
@@ -24,14 +25,6 @@ class ofApp : public ofBaseApp {
 		void setup();
 		void update();
 		void draw();
-
-		void mousePressed(ofMouseEventArgs& touch);
-		void mouseReleased(ofMouseEventArgs& touch);
-		void mouseDragged(ofMouseEventArgs& touch);
-		void touchDown(ofTouchEventArgs& touch);
-		void touchUp(ofTouchEventArgs& touch);
-		
-		void windowResized(int w, int h);
 		
 		void do_ffmpeg_stuff();
 
@@ -43,5 +36,5 @@ class ofApp : public ofBaseApp {
 #if defined (TARGET_ANDROID)		
 		CameraPlugin cameraPlugin;
 #endif
-		std::shared_ptr<View> myView;
+		std::shared_ptr<RootView> myView;
 };

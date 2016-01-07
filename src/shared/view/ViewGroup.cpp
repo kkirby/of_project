@@ -9,8 +9,6 @@ void ViewGroup::recalculateWorld(const ofRectangle& container,const ofRectangle&
 	}
 }
 
-void ViewGroup::update(){}
-
 void ViewGroup::render() const {
 	for(auto& view : children){
 		view->render();

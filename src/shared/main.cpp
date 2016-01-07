@@ -23,7 +23,7 @@ extern "C" int Java_cc_openframeworks_OFAndroid_init(){
 	return of_project_main();
 }
 	
-#elif defined (TARGET_OSX)
+#else
 int main(){
 	of_project_main();
 	return 0;

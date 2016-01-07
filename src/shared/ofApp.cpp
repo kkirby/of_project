@@ -55,7 +55,7 @@ void ofApp::setup(){
 		orientation = ((ofxAndroidVideoGrabber*)grabber.getGrabber().get())->getCameraOrientation();
 	#endif
 	fbo.allocate(grabber.getWidth(),grabber.getHeight(),GL_RGB);
-	myView = ViewBuilder<ViewGroup>({
+	myView = ViewBuilder<RootView>({
 		{"fill",""},
 		{"id","root"}
 	})->addChild(
@@ -118,8 +118,6 @@ void ofApp::setup(){
 			20,20,20	
 		)
 	);
-	ofRectangle container(0,0,ofGetWidth(),ofGetHeight());
-	myView->recalculateWorld(container,container);
 }
 
 void ofApp::update(){
@@ -173,35 +171,4 @@ void ofApp::update(){
 
 void ofApp::draw(){
 	myView->render();
-}
-
-void ofApp::windowResized(int w, int h){
-	ofRectangle container(0,0,ofGetWidth(),ofGetHeight());
-	myView->recalculateWorld(container,container);
-}
-
-void ofApp::mousePressed(ofMouseEventArgs& touch){
-	myView->uiDown(touch);
-}
-
-void ofApp::mouseDragged(ofMouseEventArgs& touch){
-	myView->uiMove(touch);
-}
-
-void ofApp::mouseReleased(ofMouseEventArgs& touch){
-	myView->uiUp(touch);
-}
-
-void ofApp::touchDown(ofTouchEventArgs& touch){
-}
-
-void ofApp::touchUp(ofTouchEventArgs& touch){
-	#if defined (TARGET_ANDROID)
-	if(cameraPlugin.recording){
-		//cameraPlugin.stopRecording();
-	}
-	else {
-		//cameraPlugin.startRecording();
-	}
-	#endif
 }

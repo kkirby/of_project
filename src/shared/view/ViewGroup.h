@@ -10,7 +10,6 @@ VIEW(ViewGroup){
 		ViewGroup();
 		void recalculateWorld(const ofRectangle& container,const ofRectangle& viewport);
 		virtual void render() const;
-		virtual void update();
 		selfptr_t addChild(std::shared_ptr<View> view);
 		template <typename... Args> selfptr_t addChild(std::shared_ptr<View> head,Args... args){
 			addChild(head);

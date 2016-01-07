@@ -35,7 +35,7 @@ ffmpegResult threadedFunction(
 	arg_t* args_c = (arg_t*)malloc(sizeof(arg_t*) * args.size() + 2);
 	args_c[0] = "ffmpeg";
 	args_c[args.size() + 1] = NULL;
-	for(u_int i = 0; i < args.size(); i++){
+	for(unsigned int i = 0; i < args.size(); i++){
 		args_c[i + 1] = args[i];
 	}
 	ffmpegResult result = execute_ffmpeg_command(args_c,&g_progress_cb_c,&g_info_cb_c);
