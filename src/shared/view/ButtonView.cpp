@@ -31,7 +31,7 @@ void ButtonView::recalculateWorld(const ofRectangle& container,const ofRectangle
 	down->recalculateWorld(worldRect,viewport);
 }
 
-void ButtonView::render() const {
+void ButtonView::renderContent() const {
 	if(state == ButtonState::UP){
 		up->render();
 	}

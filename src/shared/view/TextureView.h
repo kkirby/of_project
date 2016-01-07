@@ -9,6 +9,6 @@ VIEW(TextureView){
 		ofFbo fbo;
 		int internalFormat;
 		int numSamples;
-		virtual void render() const;
+		virtual void renderContent() const;
 		virtual void update();
 };

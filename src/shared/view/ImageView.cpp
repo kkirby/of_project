@@ -8,6 +8,6 @@ ImageView::ImageView(const char* imageSrc) {
 	image.load(imageSrc);
 }
 
-void ImageView::render() const {
+void ImageView::renderContent() const {
 	image.draw(worldRect);
 }

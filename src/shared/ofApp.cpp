@@ -1,5 +1,4 @@
 #include "ofApp.h"
-#include "view/ViewGroup.h"
 #include "view/ColoredRect.h"
 #include "view/TextureView.h"
 #include "CameraImageView.h"

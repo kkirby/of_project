@@ -8,5 +8,5 @@ VIEW(ImageView){
 		ImageView(ofImage image);
 		ImageView(const char* imageSrc);
 		ofImage image;
-		virtual void render() const;
+		virtual void renderContent() const;
 };

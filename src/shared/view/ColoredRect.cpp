@@ -2,7 +2,7 @@
 
 ColoredRect::ColoredRect(int r,int g,int b): r(r), g(g), b(b) {}
 
-void ColoredRect::render() const {
+void ColoredRect::renderContent() const {
 	ofPushStyle();
 	ofSetColor(r,g,b);
 	ofFill();

@@ -6,7 +6,6 @@
 #include <regex>
 #include <math.h>
 #include "View.h"
-#include "SharedView.h"
 
 namespace ViewBuilderNS {
 	

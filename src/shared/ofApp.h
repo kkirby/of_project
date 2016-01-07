@@ -15,7 +15,6 @@
 #include "ofxiOSVideoGrabber.h"
 #endif
 
-#include "ViewGroup.h"
 #include "RootView.h"
 
 class ofApp : public ofBaseApp {
@@ -36,5 +35,5 @@ class ofApp : public ofBaseApp {
 #if defined (TARGET_ANDROID)		
 		CameraPlugin cameraPlugin;
 #endif
-		std::shared_ptr<RootView> myView;
+		std::shared_ptr<View> myView;
 };

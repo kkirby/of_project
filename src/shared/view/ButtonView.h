@@ -20,6 +20,6 @@ VIEW(ButtonView){
 		virtual void onUiDown(const ofVec2f& touch);
 		virtual void onUiUp(const ofVec2f& touch);
 		virtual void update();
-		virtual void render() const;
+		virtual void renderContent() const;
 		virtual void recalculateWorld(const ofRectangle& container,const ofRectangle& viewport);		
 };

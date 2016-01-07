@@ -8,7 +8,7 @@ VIEW(ColoredRect){
 		int g;
 		int b;
 		ColoredRect(int r,int g,int b);
-		void render() const;
+		void renderContent() const;
 		
 		virtual void onUiUp(const ofVec2f& touch);
 		virtual void onUiDown(const ofVec2f& touch);

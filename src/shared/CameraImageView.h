@@ -1,7 +1,7 @@
 #pragma once
-#include "ViewGroup.h"
 #include "ofxCv.h"
 #include "../filter/AbstractFilter.h"
+#include "View.h"
 
 VIEW(CameraImageView){
 	public:
@@ -9,7 +9,7 @@ VIEW(CameraImageView){
 		ofImage* image;
 		ofImage outputImage;
 		AbstractFilter* filter;
-		void render() const;
+		void renderContent() const;
 		virtual void update();
 		std::shared_ptr<View> foreground;
 		std::shared_ptr<View> background;

@@ -13,7 +13,7 @@ void TextureView::update(){
 	}
 }
 
-void TextureView::render() const {
+void TextureView::renderContent() const {
 	fbo.begin();
 	ofClear(0,0,0,0);
 	ofRectangle target(0,0,fbo.getWidth(),fbo.getHeight());
