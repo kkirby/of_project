@@ -9,9 +9,11 @@ void ViewGroup::recalculateWorld(const ofRectangle& container,const ofRectangle&
 	}
 }
 
-void ViewGroup::render(const ofRectangle& container){
+void ViewGroup::update(){}
+
+void ViewGroup::render() const {
 	for(auto& view : children){
-		view->doRender();
+		view->render();
 	}
 }
 
@@ -20,13 +22,19 @@ ViewGroup::selfptr_t ViewGroup::addChild(std::shared_ptr<View> view){
 	return getptr();
 }
 	
-void ViewGroup::onUiDown(ofVec2f& touch){
+void ViewGroup::uiDown(const ofVec2f& touch){
 	for(auto& view : children){
 		view->uiDown(touch);
 	}
 }
 
-void ViewGroup::onUiUp(ofVec2f& touch){
+void ViewGroup::uiMove(const ofVec2f& touch){
+	for(auto& view : children){
+		view->uiMove(touch);
+	}
+}
+
+void ViewGroup::uiUp(const ofVec2f& touch){
 	for(auto& view : children){
 		view->uiUp(touch);
 	}

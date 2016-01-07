@@ -7,6 +7,7 @@
 #if defined (TARGET_ANDROID)
 #include "ofxAndroid.h"
 #include "ofxAndroidVideoGrabber.h"
+#include "../android/cameraPlugin.h"
 #endif
 
 #if defined (TARGET_IOS)
@@ -14,7 +15,6 @@
 #include "ofxiOSVideoGrabber.h"
 #endif
 
-#include "cameraPlugin.h"
 #include "ViewGroup.h"
 
 class ofApp : public ofBaseApp {
@@ -24,35 +24,24 @@ class ofApp : public ofBaseApp {
 		void setup();
 		void update();
 		void draw();
-		
-		void windowResized(int w, int h);
 
 		void mousePressed(ofMouseEventArgs& touch);
 		void mouseReleased(ofMouseEventArgs& touch);
+		void mouseDragged(ofMouseEventArgs& touch);
 		void touchDown(ofTouchEventArgs& touch);
 		void touchUp(ofTouchEventArgs& touch);
-
-		void pause();
-		void stop();
-		void resume();
-		void reloadTextures();
-
-		bool backPressed();
-		void okPressed();
-		void cancelPressed();
 		
-		void updateCameraSize();
+		void windowResized(int w, int h);
+		
+		void do_ffmpeg_stuff();
 
 		ofVideoGrabber grabber;
-		bool doShader;
-		ofShader shader;
-		ofImage image;
-		ofPlanePrimitive plane;
+		ofImage overlay;
 		ofFbo fbo;
+		size_t orientation;
 		
-		size_t cameraWidth;
-		size_t cameraHeight;
-		
-		//CameraPlugin cameraPlugin;
-		std::shared_ptr<ViewGroup> myView;
+#if defined (TARGET_ANDROID)		
+		CameraPlugin cameraPlugin;
+#endif
+		std::shared_ptr<View> myView;
 };

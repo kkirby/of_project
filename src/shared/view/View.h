@@ -1,8 +1,14 @@
 #pragma once
 
-#include "ViewRect.h"
 #include "ofMain.h"
-#include <memory>
+#include "ViewRect.h"
+#include "SharedView.h"
+#include "../macros.h"
+#include "ViewInteraction.h"
+
+#define VIEW2(name,parent) class name : public SharedView<name>, public parent
+#define VIEW1(name) VIEW2(name,View)
+#define VIEW(...) VFUNC(VIEW, __VA_ARGS__)
 
 class View {
 	public:
@@ -10,17 +16,22 @@ class View {
 		const char* id;
 		View();
 		
+		ViewInteraction interaction;
+		
 		ofRectangle worldRect;
 		
 		virtual void recalculateWorld(const ofRectangle& container,const ofRectangle& viewport);
-		void doRender();
-		virtual void render(const ofRectangle& container) = 0;
 		
-		bool isEventTarget(ofVec2f& touch);
+		virtual void update(){}
 		
-		virtual void uiDown(ofVec2f& touch);
-		virtual void uiUp(ofVec2f& touch);
+		virtual void render() const = 0;
+		
+		virtual void uiDown(const ofVec2f& touch);
+		virtual void uiUp(const ofVec2f& touch);
+		virtual void uiMove(const ofVec2f& touch);
 			
-		virtual void onUiDown(ofVec2f& touch){}
-		virtual void onUiUp(ofVec2f& touch){}
+		virtual void onUiDown(const ofVec2f& touch){}
+		virtual void onUiUp(const ofVec2f& touch){}
+		virtual void onUiMove(const ofVec2f& touch){}
+		virtual void onUiClicked(const ofVec2f& touch){}
 };

@@ -1,15 +1,17 @@
 #pragma once
 
-#include "SharedView.h"
+#include "View.h"
 
-class ColoredRect : public SharedView<ColoredRect> {
+VIEW(ColoredRect){
 	public:
 		int r;
 		int g;
 		int b;
 		ColoredRect(int r,int g,int b);
-		void render(const ofRectangle& container);
+		void render() const;
 		
-		void onUiUp(ofVec2f& touch);
+		virtual void onUiUp(const ofVec2f& touch);
+		virtual void onUiDown(const ofVec2f& touch);
+		virtual void onUiClicked(const ofVec2f& touch);
 };
 

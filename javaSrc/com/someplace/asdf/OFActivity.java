@@ -85,6 +85,21 @@ public class OFActivity extends cc.openframeworks.OFActivity{
     	return  super.onPrepareOptionsMenu(menu);
     }
 	
+	@Override
+	public void onGLSurfaceCreated(){
+		System.out.println("OFActivity: onGLSurfaceCreated");
+	}
+	
+	@Override
+	public void onLoadPercent(float percent){
+		System.out.println("OFActivity: LoadPercent: " + percent);
+	}
+	
+	@Override
+	public void onUnpackingResourcesDone(){
+		System.out.println("OFActivity: unpacking resources done");
+	}
+	
 }
 
 

@@ -143,13 +143,25 @@ PROJECT_CFLAGS = -Wno-unused-variable -Wno-sign-compare -Wno-deprecated-declarat
 ################################################################################
 # PROJECT_CXX = 
 # PROJECT_CC = 
+
 PROJECT_EXCLUSIONS =
-PROJECT_EXCLUSIONS = /Users/kkirbatski/Desktop/of_project/src/android
-PROJECT_EXCLUSIONS += /Users/kkirbatski/Desktop/of_project/src/osx
-PROJECT_EXCLUSIONS += /Users/kkirbatski/Desktop/of_project/src/ios
 PROJECT_EXCLUSIONS += /Users/kkirbatski/Desktop/of_project/platform_projects%
+PROJECT_EXCLUSIONS += /Users/kkirbatski/Desktop/of_project/ffmpeg/%
+
 IOS_LIB_OUTPUT_PATH = libs/ios
 IOS_FRAMEWORK_OUTPUT_PATH = platform_projects/ios
 ANDROID_FRAMEWORK_OUTPUT_PATH = platform_projects/android
 ANDROID_LIB_OUTPUT_PATH = libs/android
+
+PROJECT_CFLAGS += -I/Users/kkirbatski/Desktop/of_project/ffmpeg/include
+
+ifeq ($(PLATFORM_OS),Android)
+	PROJECT_LDFLAGS += -L/Users/kkirbatski/Desktop/of_project/ffmpeg/android/lib
+endif
+
+PROJECT_LDFLAGS += -L/Users/kkirbatski/Desktop/of_project/ffmpeg/osx/lib
+
+
+PROJECT_LDFLAGS += -lavcodec -lavformat -lavutil -lswresample -lswscale -lffmpeg -lavfilter
+
 #MAKEFILE_DEBUG=1

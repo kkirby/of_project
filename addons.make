@@ -1,1 +1,3 @@
-ofxCvGui
+ofxGui
+ofxOpenCv
+ofxCv

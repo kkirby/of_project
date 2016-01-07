@@ -22,6 +22,7 @@ class ViewRect {
 			double value;
 			Unit unit;
 			bool hasValue;
+			bool isCenter;
 			
 			std::string toString();
 		};

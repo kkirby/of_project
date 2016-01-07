@@ -1,1 +1,1 @@
-make Debug PLATFORM_VARIANT=shared PLATFORM_OS=Android -j8 && ant -f /Users/kkirbatski/Desktop/of_project/platform_projects/android/build.xml debug && installAndLaunch /Users/kkirbatski/Desktop/of_project/platform_projects/android/bin/asdf-debug.apk
+make Debug PLATFORM_VARIANT=shared PLATFORM_OS=Android && ant -f /Users/kkirbatski/Desktop/of_project/platform_projects/android/build.xml debug

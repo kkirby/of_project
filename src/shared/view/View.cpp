@@ -5,23 +5,31 @@ View::View(){
 }
 
 void View::recalculateWorld(const ofRectangle& container,const ofRectangle& viewport){
-	ofLogVerbose("View") << "ID(" << id << ") recalulateworld";
-	worldRect = rect.getOfRect(container,viewport);
-	ofLogVerbose("View") << "ID(" << id << ") " << worldRect.getX() << "/" << worldRect.getY() << " " << worldRect.getWidth() << "x" << worldRect.getHeight();
+	ofRectangle newWorldRect = rect.getOfRect(container,viewport);
+	if(newWorldRect != worldRect){
+		worldRect = newWorldRect;
+		update();
+	}
 }
 
-void View::doRender(){
-	render(worldRect);
+
+// TODO: handle events only if nothing is overlapping view
+void View::uiDown(const ofVec2f& touch){
+	if(interaction.onDown(worldRect,touch))onUiDown(touch);
 }
 
-bool View::isEventTarget(ofVec2f& touch){
-	return worldRect.inside(touch.x,touch.y);
+void View::uiMove(const ofVec2f& touch){
+	bool changed;
+	bool res = interaction.onMove(worldRect,touch,&changed);
+	if(changed){
+		if(res)onUiDown(touch);
+		else onUiUp(touch);
+	}
 }
 
-void View::uiDown(ofVec2f& touch){
-	if(isEventTarget(touch))onUiDown(touch);
-}
-
-void View::uiUp(ofVec2f& touch){
-	if(isEventTarget(touch))onUiUp(touch);
+void View::uiUp(const ofVec2f& touch){
+	bool deactivate;
+	bool res = interaction.onUp(worldRect,touch,&deactivate);
+	if(deactivate)onUiUp(touch);
+	if(res)onUiClicked(touch);
 }
