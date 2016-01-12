@@ -3,19 +3,26 @@
 #include "ofMain.h"
 #include "View.h"
 
-VIEW(RootView){
+class RootView : public View {
 	public:
 		RootView();
+		virtual ~RootView();
 		
 		virtual std::shared_ptr<View> addChild(std::shared_ptr<View> view);
 		
-		void touchDown(ofTouchEventArgs& touch);
-		void touchUp(ofTouchEventArgs& touch);
-		void touchMove(ofTouchEventArgs& touch);
+		void onTouchDown(ofTouchEventArgs& onTouch);
+		void onTouchUp(ofTouchEventArgs& onTouch);
+		void onTouchMove(ofTouchEventArgs& onTouch);
 		
-		void mouseDown(ofMouseEventArgs& mouse);
-		void mouseUp(ofMouseEventArgs& mouse);
-		void mouseMove(ofMouseEventArgs& mouse);
+		void onMouseDown(ofMouseEventArgs& onMouse);
+		void onMouseUp(ofMouseEventArgs& onMouse);
+		void onMouseMove(ofMouseEventArgs& onMouse);
 		
-		void resized(ofResizeEventArgs& event);
+		void onResized(ofResizeEventArgs& event);
+		
+		void onUpdate(ofEventArgs& event);
+		void onRender(ofEventArgs& event);
+		
+		void eventBind();
+		void eventUnBind();
 };

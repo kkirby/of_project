@@ -1,9 +1,9 @@
 #include "TextureView.h"
 #include <math.h>
 
-TextureView::TextureView(ofTexture* tex,int _internalFormat,int _numSamples): internalFormat(_internalFormat), numSamples(_numSamples), texture(tex) {}
+TextureView::TextureView(ofBaseDraws* tex,int _internalFormat,int _numSamples): internalFormat(_internalFormat), numSamples(_numSamples), texture(tex) {}
 
-void TextureView::update(){
+void TextureView::rectUpdated(){
 	if(
 		!fbo.isAllocated() ||
 		fbo.getWidth() != (int)worldRect.getWidth() ||

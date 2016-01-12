@@ -2,21 +2,54 @@
 #include "ViewBuilder.h"
 
 RootView::RootView(){
-	ofAddListener(ofEvents().touchUp, this, &RootView::touchUp);
-	ofAddListener(ofEvents().touchDown, this, &RootView::touchDown);
-	ofAddListener(ofEvents().touchMoved, this, &RootView::touchMove);
-	
-	ofAddListener(ofEvents().mouseReleased, this, &RootView::mouseUp);
-	ofAddListener(ofEvents().mousePressed, this, &RootView::mouseDown);
-	ofAddListener(ofEvents().mouseDragged, this, &RootView::mouseMove);
-	
-	ofAddListener(ofEvents().windowResized, this, &RootView::resized);
-	
+	eventBind();
 	ofResizeEventArgs resizeEvent(ofGetWidth(),ofGetHeight());
-	resized(resizeEvent);
+	onResized(resizeEvent);
 }
 
-void RootView::resized(ofResizeEventArgs& event){
+RootView::~RootView(){
+	eventUnBind();
+}
+
+void RootView::eventBind(){
+	ofAddListener(ofEvents().touchUp, this, &RootView::onTouchUp);
+	ofAddListener(ofEvents().touchDown, this, &RootView::onTouchDown);
+	ofAddListener(ofEvents().touchMoved, this, &RootView::onTouchMove);
+	
+	ofAddListener(ofEvents().mouseReleased, this, &RootView::onMouseUp);
+	ofAddListener(ofEvents().mousePressed, this, &RootView::onMouseDown);
+	ofAddListener(ofEvents().mouseDragged, this, &RootView::onMouseMove);
+	
+	ofAddListener(ofEvents().windowResized, this, &RootView::onResized);
+	
+	ofAddListener(ofEvents().update, this, &RootView::onUpdate);
+	ofAddListener(ofEvents().draw, this, &RootView::onRender);
+}
+
+void RootView::eventUnBind(){
+	ofRemoveListener(ofEvents().touchUp, this, &RootView::onTouchUp);
+	ofRemoveListener(ofEvents().touchDown, this, &RootView::onTouchDown);
+	ofRemoveListener(ofEvents().touchMoved, this, &RootView::onTouchMove);
+	
+	ofRemoveListener(ofEvents().mouseReleased, this, &RootView::onMouseUp);
+	ofRemoveListener(ofEvents().mousePressed, this, &RootView::onMouseDown);
+	ofRemoveListener(ofEvents().mouseDragged, this, &RootView::onMouseMove);
+	
+	ofRemoveListener(ofEvents().windowResized, this, &RootView::onResized);
+	
+	ofRemoveListener(ofEvents().update, this, &RootView::onUpdate);
+	ofRemoveListener(ofEvents().draw, this, &RootView::onRender);
+}
+
+void RootView::onUpdate(ofEventArgs& event){
+	update();
+}
+
+void RootView::onRender(ofEventArgs& event){
+	render();
+}
+
+void RootView::onResized(ofResizeEventArgs& event){
 	ofRectangle container(0,0,event.width,event.height);
 	recalculateWorld(container,container);
 }
@@ -29,26 +62,26 @@ std::shared_ptr<View> RootView::addChild(std::shared_ptr<View> view){
 
 //------
 
-void RootView::touchDown(ofTouchEventArgs& touch){
+void RootView::onTouchDown(ofTouchEventArgs& touch){
 	uiDown(touch);
 }
 
-void RootView::touchUp(ofTouchEventArgs& touch){
+void RootView::onTouchUp(ofTouchEventArgs& touch){
 	uiUp(touch);
 }
 
-void RootView::touchMove(ofTouchEventArgs& touch){
+void RootView::onTouchMove(ofTouchEventArgs& touch){
 	uiMove(touch);
 }
 
-void RootView::mouseDown(ofMouseEventArgs& mouse){
+void RootView::onMouseDown(ofMouseEventArgs& mouse){
 	uiDown(mouse);
 }
 
-void RootView::mouseUp(ofMouseEventArgs& mouse){
+void RootView::onMouseUp(ofMouseEventArgs& mouse){
 	uiUp(mouse);
 }
 
-void RootView::mouseMove(ofMouseEventArgs& mouse){
+void RootView::onMouseMove(ofMouseEventArgs& mouse){
 	uiMove(mouse);
 }

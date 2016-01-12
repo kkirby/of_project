@@ -15,25 +15,12 @@
 #include "ofxiOSVideoGrabber.h"
 #endif
 
-#include "RootView.h"
+#include "ofxStateMachine.h"
+#include "SharedData.h"
 
 class ofApp : public ofBaseApp {
 	
 	public:
-		
 		void setup();
-		void update();
-		void draw();
-		
-		void do_ffmpeg_stuff();
-
-		ofVideoGrabber grabber;
-		ofImage overlay;
-		ofFbo fbo;
-		size_t orientation;
-		
-#if defined (TARGET_ANDROID)		
-		CameraPlugin cameraPlugin;
-#endif
-		std::shared_ptr<View> myView;
+		itg::ofxStateMachine<SharedData> stateMachine;
 };

@@ -24,7 +24,7 @@ void g_info_cb_c(void* ptr,int level,const char* fmt,va_list args){
 	}
 }
 
-ffmpegResult threadedFunction(
+struct ffmpegResult threadedFunction(
 	std::vector<const char*> args,
 	progress_cb_cpp_t progress_cb,
 	info_cb_cpp_t info_cb
@@ -38,7 +38,7 @@ ffmpegResult threadedFunction(
 	for(unsigned int i = 0; i < args.size(); i++){
 		args_c[i + 1] = args[i];
 	}
-	ffmpegResult result = execute_ffmpeg_command(args_c,&g_progress_cb_c,&g_info_cb_c);
+	struct ffmpegResult result = execute_ffmpeg_command(args_c,&g_progress_cb_c,&g_info_cb_c);
 	free(args_c);
 	return result;
 }

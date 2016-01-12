@@ -20,7 +20,7 @@ void ButtonView::onUiUp(const ofVec2f& touch){
 	state = ButtonState::UP;
 }
 
-void ButtonView::update(){
+void ButtonView::rectUpdated(){
 	up->update();
 	down->update();
 }

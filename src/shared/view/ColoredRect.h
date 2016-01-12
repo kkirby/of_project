@@ -2,7 +2,7 @@
 
 #include "View.h"
 
-VIEW(ColoredRect){
+class ColoredRect : public View {
 	public:
 		int r;
 		int g;

@@ -2,13 +2,8 @@
 
 #include "ofMain.h"
 #include "ViewRect.h"
-#include "../macros.h"
 #include "ViewInteraction.h"
 #include <memory>
-
-#define VIEW2(name,parent) class name : public parent
-#define VIEW1(name) VIEW2(name,View)
-#define VIEW(...) VFUNC(VIEW, __VA_ARGS__)
 
 class View : public std::enable_shared_from_this<View> {
 	public:
@@ -22,7 +17,9 @@ class View : public std::enable_shared_from_this<View> {
 		
 		virtual void recalculateWorld(const ofRectangle& container,const ofRectangle& viewport);
 		
-		virtual void update(){}
+		virtual void update();
+		virtual void updateChildren();
+		virtual void rectUpdated(){}
 		
 		virtual void render() const;
 		virtual void renderChildren() const;

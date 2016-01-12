@@ -2,13 +2,13 @@
 #include "View.h"
 #include <vector>
 
-VIEW(TextureView){
+class TextureView : public View {
 	public:
-		TextureView(ofTexture* tex,int internalFormat = GL_RGBA,int numSamples = 0);
-		ofTexture* texture;
+		TextureView(ofBaseDraws* tex,int internalFormat = GL_RGBA,int numSamples = 0);
+		ofBaseDraws* texture;
 		ofFbo fbo;
 		int internalFormat;
 		int numSamples;
 		virtual void renderContent() const;
-		virtual void update();
+		virtual void rectUpdated();
 };

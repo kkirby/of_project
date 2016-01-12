@@ -8,7 +8,7 @@ void View::recalculateWorld(const ofRectangle& container,const ofRectangle& view
 	ofRectangle newWorldRect = rect.getOfRect(container,viewport);
 	if(newWorldRect != worldRect){
 		worldRect = newWorldRect;
-		update();
+		rectUpdated();
 		for(auto& view : children){
 			view->recalculateWorld(worldRect,viewport);
 		}
@@ -28,6 +28,16 @@ void View::renderChildren() const {
 	for(auto& child : children){
 		child->render();
 	}
+}
+
+void View::updateChildren(){
+	for(auto& child : children){
+		child->update();
+	}
+}
+
+void View::update(){
+	updateChildren();
 }
 
 void View::render() const {
